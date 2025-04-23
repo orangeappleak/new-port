@@ -2,28 +2,47 @@
 
 import Link from 'next/link';
 import { useTransitionRouter } from 'next-view-transitions';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import Loading from './Loading';
+
+let isTransitioning = false;
 
 export default function NavBar() {
     const router = useTransitionRouter();
     const pathname = usePathname();
+    const [isLoading, setIsLoading] = useState(true);
     const routes = [
         { name: 'Home', url: '/' },
+        { name: 'About', url: '/About' },
         { name: 'Projects', url: '/Projects' },
-        { name: 'About', url: '/About' }
     ];
+
 
     useEffect(() => {
         disableScroll();
-        slideIn(() => {
-            if ('scrollRestoration' in window.history) {
-                window.history.scrollRestoration = 'manual';
-            }
-            window.scrollTo({ top: 0, left: 0 });
-            slideOut();
+        document.addEventListener('loadingDone', () => {
+            setIsLoading(false);
         });
     }, []);
+
+    useEffect(() => {
+        const handlePop = () => {
+            disableScroll();
+
+            slideIn(() => {
+                window.scrollTo({ top: 0, left: 0 });
+                router.push(pathname);
+                setTimeout(() => slideOut(), 100);
+            });
+        };
+
+        window.addEventListener('popstate', handlePop);
+
+        return () => {
+            window.removeEventListener('popstate', handlePop);
+        };
+    }, [pathname]);
 
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
@@ -35,23 +54,22 @@ export default function NavBar() {
         slideIn(() => {
             window.scrollTo({ top: 0, left: 0 });
             router.push(url);
-            setTimeout(() => slideOut(), 500);
+            setTimeout(() => slideOut(), 100);
         });
     };
 
     return (
         <>
-            <nav className="fixed top-0 w-full flex justify-center items-center z-50 shadow-sm">
+            <nav className="fixed top-0 w-full flex justify-center items-center  z-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
-                        <div className="flex space-x-8 border-2 border-white/40 m-5 px-20 py-10 rounded-2xl bg-black/80 backdrop-blur-sm">
-
+                        <div className="flex space-x-8 m-5 px-10 py-5 rounded-2xl backdrop-invert-65 bg-black/80 backdrop-blur-sm">
                             {routes.map((route) => (
                                 <Link
                                     key={route.url}
                                     href={route.url}
                                     onClick={e => { onNavClick(e, route.url); console.log(route.name, route.url) }}
-                                    className="inline-flex items-center text-xl font-medium text-white"
+                                    className="inline-flex items-center text-md font-medium text-white"
                                 >
                                     {route.name}
                                 </Link>
@@ -60,11 +78,30 @@ export default function NavBar() {
                     </div>
                 </div>
             </nav>
-            <div className="pointer-events-none fixed flex flex-row inset-0 z-50">
-                <div className="transition-strip bg-white top-0" />
-                <div className="transition-strip bg-white top-1/3" />
-                <div className="transition-strip bg-white top-2/3" />
+
+            {isLoading && (
+                <Loading />
+            )}
+
+
+            <div className="pointer-events-none fixed flex w-screen h-screen flex-row items-center justify-center inset-0 z-50">
+                <div className="transition-strip bg-white w-screen top-0 flex items-center justify-center">
+                    <h1 className='text-black text-6xl w-full text-center'>Design</h1>
+                </div>
+                <div className="transition-strip bg-white w-screen top-1/5 flex items-center justify-center">
+                    <h1 className='text-black text-6xl w-full text-center'>Develop</h1>
+                </div>
+                <div className="transition-strip bg-white w-screen top-2/5 flex items-center justify-center">
+                    <h1 className='text-black text-6xl w-full text-center'>Deliver</h1>
+                </div>
+                <div className="transition-strip bg-white w-screen top-3/5 flex items-center justify-center">
+                    <h1 className='text-black text-6xl w-full text-center'>Deliver</h1>
+                </div>
+                <div className="transition-strip bg-white w-screen top-4/5 flex items-center justify-center">
+                    <h1 className='text-black text-6xl w-full text-center'>Deliver</h1>
+                </div>
             </div>
+
         </>
     );
 }
@@ -96,28 +133,33 @@ export function enableScroll() {
 }
 
 export function slideIn(onComplete: () => void) {
-    const strips = Array.from(document.querySelectorAll('.transition-strip'));
-    const inDur = 1500;
-    const stagger = 200;
 
-    // reset them off‑screen
-    strips.forEach(s => (s as HTMLElement).style.transform = 'translateX(-100%)');
+    if (isTransitioning) return;
+    isTransitioning = true;
+
+    const strips = Array.from(document.querySelectorAll('.transition-strip'));
+    const inDur = 1000;
+    const stagger = 100;
+
+    console.log(strips);
+
+    // strips.forEach(s => (s as HTMLElement).style.transform = 'translateX(-100%)');
 
     strips.forEach((strip, i) => {
         const anim = strip.animate(
             [
                 { transform: 'translateX(-100%)' },
-                { transform: 'translateX(0)' },
+                { transform: 'translateX(0%)' },
             ],
             {
                 duration: inDur,
                 fill: 'forwards',
-                easing: 'cubic-bezier(0.25, 0.1, 0.25, 1.0)',
+                easing: 'ease-in-out',
                 delay: i * stagger,
             }
         );
 
-        // on the *last* strip’s in‑animation, invoke the callback
+        // // on the *last* strip's in‑animation, invoke the callback
         if (i === strips.length - 1) {
             anim.onfinish = onComplete;
         }
@@ -125,14 +167,12 @@ export function slideIn(onComplete: () => void) {
 }
 
 
-export function slideOut() {
+export function slideOut(callback?: () => void) {
     const strips = Array.from(document.querySelectorAll('.transition-strip'));
-    const D = 1500; // duration
+    const D = 1000;
 
-    // 1) Reset them exactly at x=0
-    strips.forEach(s => (s as HTMLElement).style.transform = 'translateX(0)');
+    // strips.forEach(s => (s as HTMLElement).style.transform = 'translateX(0)');
 
-    // 2) Batch animate them all in the very next frame
     requestAnimationFrame(() => {
         strips.forEach((strip, i) => {
             strip.animate(
@@ -143,21 +183,21 @@ export function slideOut() {
                 {
                     duration: D,
                     fill: 'forwards',
-                    easing: 'cubic-bezier(0.25, 0.1, 0.25, 1.0)',
-                    delay: i * 200,
-                    // no delay here — truly simultaneous
+                    easing: 'ease-in-out',
+                    delay: i * 100,
                 }
             );
         });
     });
 
-    // 3) Fire your “transitionDone” when the *middle* strip finishes
-    //    That’s strip index 1 ⇒ finishes exactly after D ms
     setTimeout(() => {
         document.dispatchEvent(new Event('transitionDone'));
+        isTransitioning = false;
         enableScroll();
-    }, 1000);
+        callback?.(); // <- Optional callback after transition
+    }, D);
 }
+
 
 
 

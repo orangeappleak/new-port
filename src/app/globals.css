@@ -1,30 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Imperial+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap');
 @import "tailwindcss";
 
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: black;
 }
 
-@theme inline {
+/* @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
   --font-script: var(--font-script);
-}
+} */
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-script);
 }
 
 ::view-transition-group(root) {
@@ -50,8 +45,39 @@ body {
 .transition-strip {
   position: absolute;
   left: 0;
-  width: 200%;
-  height: 33.3333%;
+  width: 100%;
+  height: 20%;
   transform: translateX(-100%);
-  will-change: transform; 
+  will-change: transform;
+}
+
+.pinyon-script {
+  font-family: 'Pinyon Script', cursive;
+}
+
+.funnel-display {
+  font-family: 'Funnel Display';
+}
+
+@keyframes neon-blink {
+
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 10px #fff, 0 0 20px #0ff, 0 0 40px #0ff, 0 0 80px #0ff;
+  }
+
+  20%,
+  22%,
+  24%,
+  55% {
+    opacity: 0.3;
+    text-shadow: none;
+  }
 }

@@ -1,8 +1,8 @@
-// components/PageHeading.tsx
 'use client';
 
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
+// PageHeading.tsx
 
 interface PageHeadingProps {
     text: string;
@@ -10,36 +10,49 @@ interface PageHeadingProps {
 
 export default function PageHeading({ text }: PageHeadingProps) {
     const wrapperRef = useRef<HTMLHeadingElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const flags = useRef({ transitionDone: false, loadingDone: false });
 
     useEffect(() => {
-        // Split the text into individual characters
         const chars = gsap.utils.toArray<HTMLElement>('.char', wrapperRef.current);
+        gsap.set(chars, { opacity: 0, rotateX: 90 });
 
-        // Set initial state: 20% down and invisible
-        gsap.set(chars, { yPercent: 20, opacity: 0 });
-
-        // Create a timeline for the letter animation
-        const tl = gsap.timeline({ paused: true });
-
-        tl.to(chars, {
-            yPercent: 0,
+        const tl = gsap.timeline({ paused: true }).to(chars, {
+            rotateX: 0,
             opacity: 1,
             duration: 0.5,
             ease: 'cubic-bezier(0.445, 0.05, 0.55, 0.95)',
             stagger: 0.05,
         });
 
-        // Play the animation when transitionDone fires
-        const onDone = () => tl.play();
-        document.addEventListener('transitionDone', onDone);
-        return () => document.removeEventListener('transitionDone', onDone);
+        const onTransitionDone = () => {
+            flags.current.transitionDone = true;
+            tl.play();
+        };
+
+        const onLoadingDone = () => {
+            flags.current.loadingDone = true;
+            tl.play();
+        };
+
+        document.addEventListener('transitionDone', onTransitionDone);
+        document.addEventListener('loadingDone', onLoadingDone);
+
+        return () => {
+            document.removeEventListener('transitionDone', onTransitionDone);
+            document.removeEventListener('loadingDone', onLoadingDone);
+        };
     }, []);
 
     return (
-        <div className="flex items-center justify-center h-screen w-screen overflow-hidden">
+        <div
+            ref={containerRef}
+
+            className="relative pinyon-script flex items-center justify-center h-auto w-auto overflow-visible leading-[1.2]"
+        >
             <h1
                 ref={wrapperRef}
-                className="text-[30em] font-light text-white flex flex-row flex-wrap"
+                className="text-[300px] font-script text-white cursor-pointer flex flex-row flex-wrap"
             >
                 {Array.from(text).map((char, i) => (
                     <span key={i} className="char inline-block">

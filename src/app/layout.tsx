@@ -23,7 +23,7 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="en">
         <body
-          className={`antialiased font-sans w-screen overflow-x-hidden bg-black`}
+          className={`antialiased funnel-display w-screen overflow-x-hidden bg-white`}
         >
           <NavBar />
           <SmoothScroll />
