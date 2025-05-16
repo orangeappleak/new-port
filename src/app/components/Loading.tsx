@@ -15,6 +15,8 @@ export default function Loading() {
 
     useEffect(() => {
 
+        window.scrollTo({ top: 0, left: 0 });
+
         gsap.fromTo(wrapperRef.current,
             { opacity: 0 },
             {
@@ -106,35 +108,42 @@ export default function Loading() {
             ref={wrapperRef}
             className={`fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center transition-opacity duration-1000 ${fadeOut ? 'pointer-events-none' : ''
                 }`}
-            style={{ willChange: 'transform, opacity' }}
+            style={{
+                willChange: 'transform, opacity',
+                overflow: 'hidden',
+                height: '100dvh', // Mobile-safe height
+            }}
         >
             {/* Slot machine text */}
-            <div className="flex justify-between w-full max-w-6xl px-10 mb-6 z-10 mix-blend-difference">
+            <div className="flex flex-wrap justify-center items-center w-full max-w-6xl px-6 z-10 mix-blend-difference jersey">
                 {targetText.split('').map((char, i) => (
                     <span
                         key={i}
                         ref={(el) => { letterRefs.current[i] = el; }}
-                        className="text-9xl mr-2 font-bold text-white select-none w-[40px] text-center"
-                        style={{ opacity: 0 }}
+                        className="mr-2 font-bold text-white select-none w-[2w] text-center"
+                        style={{
+                            fontSize: 'clamp(60px, 10vw, 200px)',
+                            opacity: 0,
+                        }}
                     >
                         {char}
                     </span>
                 ))}
-            </div>
 
-            {/* Percentage in Bottom Right */}
-            <span
-                className="absolute bottom-6 right-10 text-5xl font-mono tracking-wide select-none z-10 mix-blend-difference text-white"
-            >
+            </div>
+            <span className="relative text-[clamp(30px,4vw,48px)] font-mono tracking-wide select-none z-10 mix-blend-difference text-white jersey">
                 {percentage}%
             </span>
+
+            {/* Percentage in Bottom Right */}
 
             {/* Progress Sheet */}
             <div
                 ref={progressRef}
                 className="absolute bottom-0 left-0 w-full bg-white"
-                style={{ height: 0 }}
+                style={{ height: 0, transition: 'height 0.5s ease' }}
             />
+
         </div>
     );
 }

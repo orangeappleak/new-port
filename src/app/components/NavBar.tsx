@@ -5,7 +5,6 @@ import { useTransitionRouter } from 'next-view-transitions';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Loading from './Loading';
-
 let isTransitioning = false;
 
 export default function NavBar() {
@@ -18,11 +17,39 @@ export default function NavBar() {
         { name: 'Projects', url: '/Projects' },
     ];
 
+    useEffect(() => {
+        // const setVh = () => {
+        //     const vh = window.innerHeight * 0.01;
+        //     document.documentElement.style.setProperty('--vh', `${vh}px`);
+        //     ScrollTrigger.refresh(); // Make GSAP aware of height change
+        // };
+
+        // setVh();
+        // window.addEventListener('resize', setVh);
+        // window.addEventListener('orientationchange', setVh); // ✅ Add this
+
+        // return () => {
+        //     window.removeEventListener('resize', setVh);
+        //     window.removeEventListener('orientationchange', setVh);
+        // };
+
+
+    }, []);
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh-locked', `${vh}px`);
+        }
+    }, []);
+
 
     useEffect(() => {
         disableScroll();
+        window.scrollTo({ top: 0, left: 0 });
         document.addEventListener('loadingDone', () => {
             setIsLoading(false);
+            enableScroll();
         });
     }, []);
 
@@ -54,7 +81,7 @@ export default function NavBar() {
         slideIn(() => {
             window.scrollTo({ top: 0, left: 0 });
             router.push(url);
-            setTimeout(() => slideOut(), 100);
+            setTimeout(() => slideOut(), 200);
         });
     };
 
@@ -63,13 +90,13 @@ export default function NavBar() {
             <nav className="fixed top-0 w-full flex justify-center items-center  z-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
-                        <div className="flex space-x-8 m-5 px-10 py-5 rounded-2xl backdrop-invert-65 bg-black/80 backdrop-blur-sm">
+                        <div className="flex space-x-8 m-5 px-10 py-8 rounded-2xl backdrop-invert-65 bg-black/80 backdrop-blur-sm">
                             {routes.map((route) => (
                                 <Link
                                     key={route.url}
                                     href={route.url}
                                     onClick={e => { onNavClick(e, route.url); console.log(route.name, route.url) }}
-                                    className="inline-flex items-center text-md font-medium text-white"
+                                    className="inline-flex items-center text-2xl jersey font-medium text-white"
                                 >
                                     {route.name}
                                 </Link>
@@ -84,21 +111,21 @@ export default function NavBar() {
             )}
 
 
-            <div className="pointer-events-none fixed flex w-screen h-screen flex-row items-center justify-center inset-0 z-50">
-                <div className="transition-strip bg-white w-screen top-0 flex items-center justify-center">
-                    <h1 className='text-black text-6xl w-full text-center'>Design</h1>
+            <div className="pointer-events-none gap-0 fixed flex w-screen h-screen flex-col-reverse md:flex-col inset-0 z-50">
+                <div className={`transition-strip bg-white h-screen w-1/5 left-0 flex-1 flex`}>
+                    <h1 className='text-black text-8xl w-full rotate-90 md:rotate-0 text-center'>Trust</h1>
                 </div>
-                <div className="transition-strip bg-white w-screen top-1/5 flex items-center justify-center">
-                    <h1 className='text-black text-6xl w-full text-center'>Develop</h1>
+                <div className={`transition-strip bg-white h-screen w-1/5 flex-1 left-1/5 flex`}>
+                    <h1 className='text-black text-8xl w-full rotate-90 md:rotate-0 text-center'>Me</h1>
                 </div>
-                <div className="transition-strip bg-white w-screen top-2/5 flex items-center justify-center">
-                    <h1 className='text-black text-6xl w-full text-center'>Deliver</h1>
+                <div className={`transition-strip bg-white h-screen w-1/5 flex-1 left-2/5 flex`}>
+                    <h1 className='text-black text-8xl w-full rotate-90 md:rotate-0 text-center'>I'm</h1>
                 </div>
-                <div className="transition-strip bg-white w-screen top-3/5 flex items-center justify-center">
-                    <h1 className='text-black text-6xl w-full text-center'>Deliver</h1>
+                <div className={`transition-strip bg-white h-screen w-1/5 flex-1 left-3/5 flex`}>
+                    <h1 className='text-black text-8xl w-full rotate-90 md:rotate-0 text-center'>A</h1>
                 </div>
-                <div className="transition-strip bg-white w-screen top-4/5 flex items-center justify-center">
-                    <h1 className='text-black text-6xl w-full text-center'>Deliver</h1>
+                <div className={`transition-strip bg-white h-screen w-1/5 flex-1 left-4/5 flex`}>
+                    <h1 className='text-black text-8xl w-full rotate-90 md:rotate-0 text-center'>DEV</h1>
                 </div>
             </div>
 
@@ -138,8 +165,8 @@ export function slideIn(onComplete: () => void) {
     isTransitioning = true;
 
     const strips = Array.from(document.querySelectorAll('.transition-strip'));
-    const inDur = 1000;
-    const stagger = 100;
+    const inDur = 800;
+    const stagger = 200;
 
     console.log(strips);
 
@@ -148,8 +175,8 @@ export function slideIn(onComplete: () => void) {
     strips.forEach((strip, i) => {
         const anim = strip.animate(
             [
-                { transform: 'translateX(-100%)' },
-                { transform: 'translateX(0%)' },
+                { transform: 'translateY(-100%)' },
+                { transform: 'translateY(0%)' },
             ],
             {
                 duration: inDur,
@@ -169,7 +196,7 @@ export function slideIn(onComplete: () => void) {
 
 export function slideOut(callback?: () => void) {
     const strips = Array.from(document.querySelectorAll('.transition-strip'));
-    const D = 1000;
+    const D = 800;
 
     // strips.forEach(s => (s as HTMLElement).style.transform = 'translateX(0)');
 
@@ -177,14 +204,14 @@ export function slideOut(callback?: () => void) {
         strips.forEach((strip, i) => {
             strip.animate(
                 [
-                    { transform: 'translateX(0)' },
-                    { transform: 'translateX(100%)' }
+                    { transform: 'translateY(0)' },
+                    { transform: 'translateY(100%)' }
                 ],
                 {
                     duration: D,
                     fill: 'forwards',
                     easing: 'ease-in-out',
-                    delay: i * 100,
+                    delay: i * 200,
                 }
             );
         });

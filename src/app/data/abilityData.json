@@ -1,0 +1,92 @@
+[
+    {
+        "title": "Frontend",
+        "color": "red",
+        "leftSectionHeading": "Crafting Dynamic Interfaces",
+        "leftSectionContent": "Skilled in building responsive, accessible, and interactive user experiences using React.js, Next.js, and Tailwind CSS. I specialize in crafting pixel-perfect UIs, implementing smooth animations with GSAP and Framer Motion, and optimizing performance for both mobile and desktop platforms. With a strong focus on usability, scalability, and design systems, I ensure seamless integration between frontend logic and visual design across all screen sizes.",
+        "rightSectionHeading": "Creative Web Animations",
+        "rightSectionContent": "Bring interfaces to life with Framer Motion, GSAP, and Three.js for immersive, animated experiences. Proficient in converting Figma designs into clean, production-ready code.",
+        "skills": [
+            "HTML5",
+            "CSS3",
+            "JavaScript (ES6+)",
+            "TypeScript",
+            "React.js",
+            "Next.js",
+            "Tailwind CSS",
+            "Framer Motion",
+            "Three.js",
+            "GSAP",
+            "Figma (UI to Code)",
+            "Vite",
+            ""
+        ]
+    },
+    {
+        "title": "Backend",
+        "color": "orange",
+        "leftSectionHeading": "Robust Backend Engineering",
+        "leftSectionContent": "Experienced in designing and developing scalable server-side applications using Python, Java, Ruby on Rails, and Flask. Skilled in crafting robust RESTful APIs and microservices that are secure, efficient, and easy to maintain. I focus on writing clean, modular code, implementing background job processing, and integrating databases like PostgreSQL and MongoDB to support high-performance, data-driven systems.",
+        "rightSectionHeading": "Cloud-Native and DevOps Ready",
+        "rightSectionContent": "Deploy applications efficiently on AWS and Vercel with Docker and Kubernetes. Manage state and caching with Redis, and optimize API performance for real-world demands.",
+        "skills": [
+            "Python",
+            "Java",
+            "Ruby on Rails",
+            "Flask",
+            "Docker",
+            "Kubernetes",
+            "Spring Boot",
+            "Microservices",
+            "API",
+            "RESTful APIs",
+            "AWS",
+            "Vercel",
+            "Node.js",
+            "Redis",
+            "Express",
+            ""
+        ]
+    },
+    {
+        "title": "Full-Stack",
+        "color": "purple",
+        "leftSectionHeading": "Seamless Full-Stack Solutions",
+        "leftSectionContent": "Proficient in integrating React.js frontends with robust Node.js and Express backends, ensuring seamless client-server communication and reliable end-to-end functionality. I build RESTful and real-time APIs, manage authentication and authorization flows, and handle state synchronization between frontend and backend. With a strong understanding of full stack workflows, I prioritize performance, scalability, and maintainable architecture in all integrations.",
+        "rightSectionHeading": "Database Management & Optimization",
+        "rightSectionContent": "Manage and scale relational and NoSQL databases like PostgreSQL and MongoDB. Build reliable, efficient full-stack applications with real-world scalability in mind.",
+        "frontendSkills": [
+            "HTML5",
+            "CSS3",
+            "JavaScript (ES6+)",
+            "TypeScript",
+            "React.js",
+            "Next.js",
+            "Tailwind CSS",
+            "Framer Motion",
+            "Three.js",
+            "GSAP",
+            "Figma (UI to Code)",
+            "Vite",
+            ""
+        ],
+        "backendSkills": [
+            "Python",
+            "Java",
+            "Ruby on Rails",
+            "Flask",
+            "Docker",
+            "Kubernetes",
+            "Spring Boot",
+            "Microservices",
+            "API",
+            "RESTful APIs",
+            "AWS",
+            "Vercel",
+            "Node.js",
+            "Redis",
+            "Express",
+            ""
+        ]
+    }
+]

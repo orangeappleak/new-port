@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sofia&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jacquard+12&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jersey+15&display=swap');
 @import "tailwindcss";
 
 
@@ -7,6 +10,7 @@
   --background: #ffffff;
   --foreground: black;
 }
+
 
 /* @theme inline {
   --color-background: var(--background);
@@ -44,11 +48,12 @@
 
 .transition-strip {
   position: absolute;
-  left: 0;
-  width: 100%;
-  height: 20%;
-  transform: translateX(-100%);
+  height: 100%;
+  transform: translateY(-100%);
   will-change: transform;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Jersey 15';
 }
 
 .pinyon-script {
@@ -58,6 +63,25 @@
 .funnel-display {
   font-family: 'Funnel Display';
 }
+
+.sofia {
+  font-family: 'Sofia', cursive;
+}
+
+.jacquard {
+  font-family: 'Jacquard 12', cursive;
+}
+
+.jersey {
+  font-family: 'Jersey 15', cursive;
+}
+
+@layer utilities {
+  .h-mobile-screen {
+    height: calc(var(--vh) * 100);
+  }
+}
+
 
 @keyframes neon-blink {
 

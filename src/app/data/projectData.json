@@ -1,0 +1,30 @@
+[
+    {
+        "title": "GitStory",
+        "description": "A Repo-storytelling and commit graph visualization tool.",
+        "image": "/repoStory.png",
+        "link": "/projects/gitstory",
+        "tools": ["React", "Flask", "OpenAi", "React Flow", "Redis", "PostgreSQL"]
+    },
+    {
+        "title": "Biker Gange",
+        "description": "An e-commerce platform for a bike shop.",
+        "image": "/bikerGang.png",
+        "link": "/projects/gitstory",
+        "tools": ["React", "Flask", "Redux", "PostgreSQL", "AWS", "Docker"]
+    },
+    {
+        "title": "AniExplorer",
+        "description": "An anime recommendation tool that uses LLMs to generate recommendations based on user preferences.",
+        "image": "/aniexplorer.png",
+        "link": "/projects/gitstory",
+        "tools": ["React", "Python", "Jupyter", "Flask", "AWS"]
+    },
+    {
+        "title": "Book Exchange Club",
+        "description": "A web platform for book lovers to exchange books with each other.",
+        "image": "/bec.png",
+        "link": "/projects/gitstory",
+        "tools": ["React", "Python", "Flask", "Firebase", "Firestore", "AWS"]
+    }
+]

@@ -14,6 +14,7 @@ interface AnimatedTextProps {
     spanStyle?: string;
     fromVars?: TweenVars; // gsap from options
     toVars?: TweenVars;   // gsap to options
+    markers?: boolean;
 }
 
 export default function AnimatedText({
@@ -26,6 +27,7 @@ export default function AnimatedText({
     spanStyle = '',
     fromVars = { opacity: 0.2 },
     toVars = { opacity: 1, duration: 4, ease: 'back.out(2)', stagger: 0.3 },
+    markers = false,
 }: AnimatedTextProps) {
     const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -42,6 +44,7 @@ export default function AnimatedText({
                 start,
                 end,
                 scrub,
+                markers,
             },
         });
     }, [triggerId, start, end, scrub, fromVars, toVars]);
@@ -49,7 +52,7 @@ export default function AnimatedText({
     return (
         <div ref={wrapperRef} className={className}>
             {text.split(' ').map((word, i) => (
-                <span key={i} className={`intro-word opacity-0 inline-block mr-2 ${spanStyle}`}>
+                <span key={i} className={`intro-word rotate-origin-bottom transform-origin-bottom opacity-0 inline-block mr-2 ${spanStyle}`}>
                     {word}
                 </span>
             ))}

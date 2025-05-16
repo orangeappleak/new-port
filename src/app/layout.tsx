@@ -4,6 +4,7 @@ import "./globals.css";
 import NavBar from "./components/NavBar";
 import { ViewTransitions } from "next-view-transitions";
 import SmoothScroll from "./components/SmoothScroll";
+import Footer from "./components/Footer";
 const inter = Inter({
   subsets: ["latin"],
   weight: ["400"],
@@ -28,6 +29,7 @@ export default function RootLayout({
           <NavBar />
           <SmoothScroll />
           {children}
+          <Footer />
         </body>
       </html>
     </ViewTransitions>

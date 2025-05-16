@@ -11,8 +11,9 @@
   "dependencies": {
     "@studio-freight/lenis": "^1.0.42",
     "@types/gsap": "^1.20.2",
+    "circletype": "^2.3.0",
     "framer-motion": "^12.7.3",
-    "gsap": "^3.12.7",
+    "gsap": "^3.13.0",
     "lenis": "^1.2.3",
     "new-port": "file:",
     "next": "15.3.0",

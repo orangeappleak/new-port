@@ -10,7 +10,10 @@ interface PinSectionProps {
     start?: string;
     end?: string;
     pinSpacing?: boolean | string;
+    endTrigger?: string;
     className?: string;
+    style?: React.CSSProperties;
+    markers?: boolean;
 }
 
 export default function PinSection({
@@ -18,8 +21,11 @@ export default function PinSection({
     triggerId = '',
     start = 'top top',
     end = '+=100%',
-    pinSpacing = true,
+    pinSpacing = false,
+    endTrigger = '',
     className = '',
+    style,
+    markers = false,
 }: PinSectionProps) {
     const pinRef = useRef<HTMLDivElement>(null);
 
@@ -30,9 +36,10 @@ export default function PinSection({
             trigger: triggerId || pinRef.current,
             start,
             end,
-            pin: true,
+            endTrigger: endTrigger || pinRef.current,
+            pin: pinRef.current,
             pinSpacing,
-            markers: true,
+            markers,
         });
 
         return () => {
@@ -41,7 +48,7 @@ export default function PinSection({
     }, [triggerId, start, end, pinSpacing]);
 
     return (
-        <div ref={pinRef} className={className}>
+        <div ref={pinRef} className={className} style={style}>
             {children}
         </div>
     );
