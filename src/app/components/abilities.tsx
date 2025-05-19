@@ -67,8 +67,8 @@ const Abilities = () => {
                                         triggerId={`#ability-${index}`}
                                         start="top bottom"
                                         end="center center"
-                                        fromVars={{ opacity: 1, width: '30%', height: '30%' }}
-                                        toVars={{ opacity: 1, width: '100%', height: '100%', duration: 1, ease: 'ease.inOut' }}
+                                        fromVars={{ opacity: 1, width: '50%', height: '50%' }}
+                                        toVars={{ opacity: 1, width: '100%', height: '100%', ease: 'sine.inOut(2)', scrollTrigger: { scrub: 1 } }}
                                         scrub={1}
                                         className={`relative flex justify-center items-center will-change-transform bg-black overflow-hidden`}
                                     >
@@ -99,22 +99,22 @@ const Abilities = () => {
                                 </div>
                             </PinSection>
                             <div id={`skills-content-wrapper-${index}`} className='relative flex-row justify-center items-center top-0 left-0 w-full h-screen flex md:py-18 md:px-10'>
-                                <div id="skills-content-item-left-wrapper" className='flex-1 overflow-hidden flex bg-black/90 items-center justify-center'>
-                                    <AnimatedContainer
-                                        tag="div"
-                                        start="top bottom"
-                                        end="top center"
-                                        fromVars={{ opacity: 0, y: 200 }}
-                                        toVars={{ opacity: 1, y: 0, duration: 1, ease: 'power2.inOut' }}
-                                        scrub={1}
-                                        className='flex md:w-1/2 md:h-1/2 flex-col justify-center items-center transform-origin-bottom rounded-xl overflow-hidden'
-                                    >
-                                        <div className='skills-content-item-left p-20'>
-                                            {/* <h1 className='text-white text-center text-3xl md:text-5xl mb-10 font-bold tracking-tight'>{ability.leftSectionHeading}</h1> */}
-                                            <h1 className='text-white text-center text-3xl md:text-5xl mb-10 font-bold tracking-tight'>{ability.leftSectionHeading}</h1>
-                                            <p className='text-white text-lg md:text-2xl font-normal tracking-tight'>{ability.leftSectionContent}</p>
+                                <div id="skills-content-item-left-wrapper" className='flex-1 h-full w-full overflow-hidden flex items-center justify-center'>
+
+
+                                    <div id="skill-content-wrapper" className='flex-1 flex items-start justify-center w-full h-full'>
+                                        <div id="skill-content" className='w-1/2 p-20 rounded-2xl flex flex-col items-center bg-black/50 justify-center backdrop-invert'>
+                                            <h1 className='text-white font-bold text-center text-6xl'>{ability.leftSectionHeading}</h1>
                                         </div>
-                                    </AnimatedContainer>
+                                    </div>
+                                    <div id="skill-content-wrapper" className='flex-1 flex items-end justify-center w-full h-full'>
+                                        <div id="skill-content" className='w-1/2 p-20 rounded-2xl  flex flex-col items-center justify-center bg-black/50 backdrop-invert'>
+                                            <h1 className='text-white text-center font-bold text-6xl'>{ability.rightSectionHeading}</h1>
+                                        </div>
+                                    </div>
+
+
+
 
                                 </div>
                             </div>

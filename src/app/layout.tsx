@@ -5,6 +5,8 @@ import NavBar from "./components/NavBar";
 import { ViewTransitions } from "next-view-transitions";
 import SmoothScroll from "./components/SmoothScroll";
 import Footer from "./components/Footer";
+import Script from "next/script";
+import LockVh from "./components/LockVh";
 const inter = Inter({
   subsets: ["latin"],
   weight: ["400"],
@@ -23,14 +25,17 @@ export default function RootLayout({
   return (
     <ViewTransitions>
       <html lang="en">
-        <script
-          type="text/javascript"
-          src="https://assets.calendly.com/assets/external/widget.js"
-          async
-        ></script>
+        <head>
+          {/* 1) Calendly widget */}
+          <Script
+            src="https://assets.calendly.com/assets/external/widget.js"
+            strategy="afterInteractive"
+          />
+        </head>
         <body
           className={`antialiased funnel-display w-screen overflow-x-hidden bg-white`}
         >
+          <LockVh />
           <NavBar />
           <SmoothScroll />
           {children}

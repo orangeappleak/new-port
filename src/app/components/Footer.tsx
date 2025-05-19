@@ -76,7 +76,7 @@ const Footer = () => {
                                 </div>
                             </div>
                             <div id="book-meeting-bottom-wrapper" className='w-full h-full flex-1 flex items-end justify-center'>
-                                <div id="book-meeting-bottom" className='w-full h-1/2 flex-1 rounded-t-2xl flex items-center justify-center bg-white'>
+                                <div id="book-meeting-bottom" className='w-full h-2/3 flex-1 rounded-t-2xl flex items-center justify-center border-2 border-white'>
 
                                 </div>
                             </div>

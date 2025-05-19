@@ -51,7 +51,7 @@ const ProjectImage = ({
             whileHover="hover"
             animate="rest"
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            className="md:w-2/3 w-full locked-screen-60 md:h-auto md:border-2 md:border-black backdrop-blur-xs bg-transparent md:p-20 flex justify-center rounded-4xl items-center relative"
+            className="md:max-w-1/2 w-full locked-screen-60 md:h-auto md:border-2 md:border-black backdrop-blur-xs md:p-20 flex justify-center rounded-4xl items-center relative"
             variants={{
                 rest: { scale: 1 },
                 hover: { scale: 1 },

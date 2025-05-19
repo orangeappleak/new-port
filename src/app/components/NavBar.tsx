@@ -36,12 +36,12 @@ export default function NavBar() {
 
     }, []);
 
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh-locked', `${vh}px`);
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (typeof window !== 'undefined') {
+    //         const vh = window.innerHeight * 0.01;
+    //         document.documentElement.style.setProperty('--vh-locked', `${vh}px`);
+    //     }
+    // }, []);
 
 
     useEffect(() => {
@@ -87,10 +87,10 @@ export default function NavBar() {
 
     return (
         <>
-            <nav className="fixed top-0 w-full flex justify-center items-center  z-50">
+            <nav className="fixed top-0 w-full flex justify-center items-center z-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
-                        <div className="flex space-x-8 m-5 px-10 py-8 rounded-2xl backdrop-invert-65 bg-black/80 backdrop-blur-sm">
+                        <div className="flex space-x-8 m-5 px-10 py-8 rounded-2xl bg-black backdrop-blur-sm backdrop-invert-65">
                             {routes.map((route) => (
                                 <Link
                                     key={route.url}

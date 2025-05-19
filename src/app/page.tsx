@@ -120,7 +120,7 @@ export default function Home() {
   return (
     <>
       <section ref={containerRef} id="main-section" className='p-5 md:p-10 relative box-border w-screen'>
-        <div id="layer-main-bg" className="absolute top-0 left-0 w-screen h md:h-screen rounded-b-2xl overflow-hidden" style={{ height: 'calc(var(--vh-locked, 1vh) * 100)' }}>
+        <div id="layer-main-bg" className="absolute top-0 left-0 w-screen md:h-screen rounded-b-2xl overflow-hidden" style={{ height: 'calc(var(--vh-locked, 1vh) * 100)', aspectRatio: '1/1' }}>
           {/* Sky Layer */}
           <div className="absolute top-0 left-0 w-full -z-6 parallax-image" style={{ height: 'calc(var(--vh-locked, 1vh) * 100)' }}>
             <Image
@@ -135,10 +135,11 @@ export default function Home() {
             />
           </div>
 
-          <div className="absolute top-0 left-0 w-full -z-3 parallax-image" style={{ height: 'calc(var(--vh-locked, 1vh) * 100)' }}>
+          <div className="absolute top-0 left-0 w-full -z-3 parallax-image" style={{ height: 'calc(var(--vh-locked, 1vh) * 100)', aspectRatio: '1/1' }}>
             <Image
               id="image2"
               src="/Version C/Layers/canyon.png"
+
               alt="sky"
               width={2000}
               height={2000}
@@ -147,7 +148,7 @@ export default function Home() {
               priority
             />
           </div>
-          <div className="absolute left-0 w-full z-2 parallax-image" style={{ height: 'calc(var(--vh-locked, 1vh) * 100)' }}>
+          <div className="absolute left-0 w-full z-2 parallax-image" style={{ height: 'calc(var(--vh-locked, 1vh) * 100)', aspectRatio: '1/1' }}>
             <Image
               id="image3"
               src="/Version C/Layers/front.png"
