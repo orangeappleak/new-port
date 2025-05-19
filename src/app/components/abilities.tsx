@@ -25,10 +25,9 @@ const Abilities = () => {
             ease: "none",
             scrollTrigger: {
                 trigger: obs,
-                start: "top bottom",
+                start: "top center",
                 end: "bottom bottom",
                 scrub: 1,
-                markers: true, // remove in production
             },
         });
 
@@ -82,9 +81,9 @@ const Abilities = () => {
                                         <OrbitText
                                             text={ability.frontendSkills ? ability.frontendSkills.join('✦') : ability.skills.join('✦')}
                                             orbitId={`orbit-text-${index}`}
-                                            speed={5}
+                                            speed={20}
                                             direction="counterclockwise"
-                                            textStyle={`text-4xl md:text-7xl ${ability.frontendSkills ? 'text-orange-400/75' : 'text-white/75'
+                                            textStyle={`text-xl md:text-4xl ${ability.frontendSkills ? 'text-orange-400/20' : 'text-white/20'
                                                 }`}
                                         />
 
@@ -93,62 +92,14 @@ const Abilities = () => {
                                             orbitId={`orbiting-text-${index + 1}`}
                                             speed={15}
                                             direction="clockwise"
-                                            textStyle={`text-3xl md:text-6xl ${ability.backendSkills ? 'text-red-400/65' : 'text-white/65'
+                                            textStyle={`text-3xl md:text-5xl ${ability.backendSkills ? 'text-red-400/40' : 'text-white/40'
                                                 }`}
-                                        />
-                                        <OrbitText
-                                            text={ability.frontendSkills ? ability.frontendSkills.join('✦') : ability.skills.join('✦')}
-                                            orbitId={`orbit-text-${index}`}
-                                            speed={25}
-                                            direction="counterclockwise"
-                                            textStyle={`text-2xl md:text-5xl ${ability.frontendSkills ? 'text-orange-400/55' : 'text-white/55'
-                                                }`}
-                                        />
-                                        <OrbitText
-                                            text={ability.backendSkills ? ability.backendSkills.join('✦') : ability.skills.join('✦')}
-                                            orbitId={`orbiting-text-${index + 1}`}
-                                            speed={45}
-                                            direction="clockwise"
-                                            textStyle={`text-xl md:text-4xl ${ability.backendSkills ? 'text-red-400/45' : 'text-white/45'
-                                                }`}
-                                        />
-                                        <OrbitText
-                                            text={ability.frontendSkills ? ability.frontendSkills.join('✦') : ability.skills.join('✦')}
-                                            orbitId={`orbitings-text-${index}`}
-                                            speed={65}
-                                            direction="counterclockwise"
-                                            textStyle={`text-lg md:text-3xl ${ability.frontendSkills ? 'text-orange-400/35' : 'text-white/35'
-                                                }`}
-                                        />
-                                        <OrbitText
-                                            text={ability.backendSkills ? ability.backendSkills.join('✦') : ability.skills.join('✦')}
-                                            orbitId={`orbitingss-text-${index + 1}`}
-                                            speed={70}
-                                            direction="clockwise"
-                                            textStyle={`text-md md:text-2xl ${ability.backendSkills ? 'text-red-400/25' : 'text-white/25'
-                                                }`}
-                                        />
-                                        <OrbitText
-                                            text={ability.frontendSkills ? ability.frontendSkills.join('✦') : ability.skills.join('✦')}
-                                            orbitId={`orbitingss-text-${index + 1}`}
-                                            speed={75}
-                                            direction="clockwise"
-                                            textStyle={`text-sm md:text-xl ${ability.frontendSkills ? 'text-orange-400/12' : 'text-white/12'
-                                                }`}
-                                        />
-                                        <OrbitText
-                                            text={ability.backendSkills ? ability.backendSkills.join('✦') : ability.skills.join('✦')}
-                                            orbitId={`orbitingss-text-${index + 1}`}
-                                            speed={85}
-                                            direction="clockwise"
-                                            textStyle={`text-xs md:text-lg ${ability.backendSkills ? 'text-red-400/8' : 'text-white/8'
-                                                }`}
-                                        />
+                                        />s
                                     </AnimatedContainer>
                                 </div>
                             </PinSection>
                             <div id={`skills-content-wrapper-${index}`} className='relative flex-row justify-center items-center top-0 left-0 w-full h-screen flex md:py-18 md:px-10'>
-                                <div id="skills-content-item-left-wrapper" className='flex-1 overflow-hidden flex bg-black/90 items-center justify-center backdrop-invert'>
+                                <div id="skills-content-item-left-wrapper" className='flex-1 overflow-hidden flex bg-black/90 items-center justify-center'>
                                     <AnimatedContainer
                                         tag="div"
                                         start="top bottom"

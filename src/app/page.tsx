@@ -35,26 +35,28 @@ export default function Home() {
       createParallax("#image2", -150);
       createParallax("#image3", -250);
 
-      const meImages = containerRef.current?.querySelectorAll('#me-images .me-image');
+      const meImages = containerRef.current?.querySelectorAll('.me-image');
+
+
       console.log(meImages);
-      meImages?.forEach(image => {
-        gsap.fromTo(image, {
+      if (meImages && meImages.length > 0) {
+        gsap.fromTo(meImages, {
           opacity: 0,
-          y: 100,
+          x: 100,
         }, {
           opacity: 1,
-          y: 0,
+          x: 0,
           duration: 2,
           ease: 'sine.inOut(2)',
           stagger: 0.8,
           scrollTrigger: {
-            trigger: image,
-            start: "top center",
+            trigger: "#me-images",
+            start: "top bottom",
             end: "bottom center",
-            scrub: 2 // 🔥 smooth out the animation
+            scrub: 1, // 🔥 smooth out the animation
           },
         });
-      });
+      }
 
 
       const tl = gsap.timeline({ paused: true });
@@ -184,9 +186,9 @@ export default function Home() {
                     <Image src="https://redport.vercel.app/_next/image?url=%2Fme4.jpg&w=3840&q=75"
                       className='me-image flex-1 w-full h-auto  -translate-y-20' alt="me" width={2000} height={2000} />
                   </div>
-                  <div id="me-image-2" className=' flex-1 flex justify-center items-center rounded-2xl w-full h-full border-2 border-black overflow-hidden'>
+                  <div id="me-image-2" className=' flex-1 flex justify-center items-center rounded-2xl w-full h-full overflow-hidden'>
                     <Image src="https://redport.vercel.app/_next/image?url=%2Fme5.JPG&w=3840&q=75"
-                      className='me-image flex-1 rounded-2xl w-full h-full' alt="me" width={2000} height={2000} />
+                      className='me-image flex-1 rounded-2xl w-full h-auto' alt="me" width={2000} height={2000} />
                   </div>
                   <div id="me-image-3" className='flex-1 flex justify-center items-center rounded-2xl w-full h-full overflow-hidden'>
                     <Image src="https://redport.vercel.app/_next/image?url=%2Fme6.jpg&w=3840&q=75"

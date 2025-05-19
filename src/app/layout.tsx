@@ -23,6 +23,11 @@ export default function RootLayout({
   return (
     <ViewTransitions>
       <html lang="en">
+        <script
+          type="text/javascript"
+          src="https://assets.calendly.com/assets/external/widget.js"
+          async
+        ></script>
         <body
           className={`antialiased funnel-display w-screen overflow-x-hidden bg-white`}
         >

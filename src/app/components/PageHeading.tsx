@@ -15,14 +15,14 @@ export default function PageHeading({ text, className }: PageHeadingProps) {
 
     useEffect(() => {
         const chars = gsap.utils.toArray<HTMLElement>('.char', wrapperRef.current);
-        gsap.set(chars, { opacity: 0, rotateX: 360, y: '-200%' });
+        gsap.set(chars, { opacity: 0, rotateX: 90, y: '50%' });
 
         const tl = gsap.timeline({ paused: true }).to(chars, {
             rotateX: 0,
             y: 0,
             opacity: 1,
             duration: 1,
-            ease: 'back.out(1)',
+            ease: 'back.inOut(1)',
             stagger: 0.08,
         });
 
