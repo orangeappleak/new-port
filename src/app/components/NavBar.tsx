@@ -4,7 +4,10 @@ import Link from 'next/link';
 import { useTransitionRouter } from 'next-view-transitions';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import gsap from '@/app/hooks/gsap-init'; // Import gsap
+import { ScrollTrigger } from 'gsap/ScrollTrigger'; // Import ScrollTrigger if not already via gsap-init
 import Loading from './Loading';
+
 let isTransitioning = false;
 
 export default function NavBar() {
@@ -197,6 +200,7 @@ export function slideIn(onComplete: () => void) {
 export function slideOut(callback?: () => void) {
     const strips = Array.from(document.querySelectorAll('.transition-strip'));
     const D = 800;
+    const totalTransitionTime = (strips.length - 1) * 200 + D;
 
     // strips.forEach(s => (s as HTMLElement).style.transform = 'translateX(0)');
 
@@ -218,11 +222,11 @@ export function slideOut(callback?: () => void) {
     });
 
     setTimeout(() => {
+        enableScroll();
         document.dispatchEvent(new Event('transitionDone'));
         isTransitioning = false;
-        enableScroll();
         callback?.(); // <- Optional callback after transition
-    }, D);
+    }, totalTransitionTime + 50);
 }
 
 

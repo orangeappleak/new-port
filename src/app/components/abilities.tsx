@@ -66,10 +66,10 @@ const Abilities = () => {
                                         tag="div"
                                         triggerId={`#ability-${index}`}
                                         start="top bottom"
-                                        end="center center"
-                                        fromVars={{ opacity: 1, width: '50%', height: '50%' }}
-                                        toVars={{ opacity: 1, width: '100%', height: '100%', ease: 'sine.inOut(2)', scrollTrigger: { scrub: 1 } }}
-                                        scrub={1}
+                                        end="top top"
+                                        fromVars={{ opacity: 1, width: '80%', height: '50%' }}
+                                        toVars={{ opacity: 1, width: '100%', height: '100%', ease: 'sine.inOut(2)' }}
+                                        scrub={0.5}
                                         className={`relative flex justify-center items-center will-change-transform bg-black overflow-hidden`}
                                     >
                                         {/* Center Title */}
@@ -103,12 +103,12 @@ const Abilities = () => {
 
 
                                     <div id="skill-content-wrapper" className='flex-1 flex items-start justify-center w-full h-full'>
-                                        <div id="skill-content" className='w-1/2 p-20 rounded-2xl flex flex-col items-center bg-black/50 justify-center backdrop-invert'>
+                                        <div id="skill-content" className='w-2/3 p-20 rounded-2xl flex flex-col items-center bg-black/50 justify-center backdrop-invert'>
                                             <h1 className='text-white font-bold text-center text-6xl'>{ability.leftSectionHeading}</h1>
                                         </div>
                                     </div>
                                     <div id="skill-content-wrapper" className='flex-1 flex items-end justify-center w-full h-full'>
-                                        <div id="skill-content" className='w-1/2 p-20 rounded-2xl  flex flex-col items-center justify-center bg-black/50 backdrop-invert'>
+                                        <div id="skill-content" className='w-2/3 p-20 rounded-2xl  flex flex-col items-center justify-center bg-black/50 backdrop-invert'>
                                             <h1 className='text-white text-center font-bold text-6xl'>{ability.rightSectionHeading}</h1>
                                         </div>
                                     </div>

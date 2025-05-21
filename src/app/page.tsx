@@ -112,7 +112,6 @@ export default function Home() {
         document.removeEventListener('transitionDone', onTransitionDone);
         document.removeEventListener('loadingDone', onLoadingDone);
         ctx.revert();
-        ScrollTrigger.refresh();
       };
     }, containerRef);
   }, []);
@@ -201,13 +200,14 @@ export default function Home() {
                   triggerId="#intro-section-wrapper"
                   start="top center"
                   end="bottom bottom"
-                  fromVars={{ opacity: 0, y: 100 }}
+                  fromVars={{ opacity: 0, y: 100, rotateX: 90 }}
                   scrub={3}
                   toVars={{
                     opacity: 1,
                     y: 0,
                     duration: 2,
-                    ease: 'back.out(2)',
+                    rotateX: 0,
+                    ease: 'sine.inOut(2)',
                     stagger: 0.2,
                   }}
                   className="text-black mt-3 text-[clamp(24px,5vw,60px)] font-bold w-full text-left leading-snug lg:leading-none flex flex-1 flex-wrap gap-x-3"

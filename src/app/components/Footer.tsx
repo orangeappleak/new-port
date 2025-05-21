@@ -15,32 +15,45 @@ const Footer = () => {
 
 
     useEffect(() => {
+        const initFooterGsap = () => {
+            if (circleRef.current) {
+                new CircleType(circleRef.current);
+            }
 
-        if (circleRef.current) {
-            const circleType = new CircleType(circleRef.current);
-        }
+            const ctx = gsap.context(() => {
+                gsap.fromTo(containerRef.current, {
+                    y: 400,
+                }, {
+                    y: 0,
+                    duration: 4,
+                    ease: 'sine.inOut(1)',
+                    scrollTrigger: {
+                        trigger: "#book-meeting-wrapper",
+                        start: 'top bottom',
+                        end: 'top center',
+                        scrub: 4,
+                    },
+                });
 
-        const ctx = gsap.context(() => {
-            // ✅ this trigger is scoped to ctx and won't interfere with others
-            gsap.fromTo(containerRef.current, {
-                y: 400,
-            }, {
-                y: 0,
-                duration: 4,
-                ease: 'sine.inOut(1)',
-                scrollTrigger: {
-                    trigger: "#book-meeting-wrapper",
-                    start: 'top bottom',
-                    end: 'top center',
-                    scrub: 4,
-                    markers: true
-                }
-            });
+                ScrollTrigger.refresh();
+            }, containerRef);
 
-            ScrollTrigger.refresh(); // update layout
-        }, containerRef); // ⬅ scoped to this component only
+            return ctx;
+        };
 
-        return () => ctx.revert(); // ⛔ safe cleanup (no global kill!)
+        let ctx = initFooterGsap();
+
+        const handleTransitionDone = () => {
+            ctx.revert(); // cleanup
+            ctx = initFooterGsap(); // re-init
+        };
+
+        document.addEventListener('transitionDone', handleTransitionDone);
+
+        return () => {
+            document.removeEventListener('transitionDone', handleTransitionDone);
+            ctx?.revert();
+        };
     }, [pathname]);
 
     return (
@@ -76,7 +89,7 @@ const Footer = () => {
                                 </div>
                             </div>
                             <div id="book-meeting-bottom-wrapper" className='w-full h-full flex-1 flex items-end justify-center'>
-                                <div id="book-meeting-bottom" className='w-full h-2/3 flex-1 rounded-t-2xl flex items-center justify-center border-2 border-white'>
+                                <div id="book-meeting-bottom" className='w-full h-2/3 flex-1 rounded-t-2xl flex items-center justify-center bg-white'>
 
                                 </div>
                             </div>

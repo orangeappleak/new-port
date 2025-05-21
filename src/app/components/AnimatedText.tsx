@@ -52,8 +52,10 @@ export default function AnimatedText({
     return (
         <div ref={wrapperRef} className={className}>
             {text.split(' ').map((word, i) => (
-                <span key={i} className={`intro-word rotate-origin-bottom transform-origin-bottom opacity-0 inline-block mr-2 ${spanStyle}`}>
-                    {word}
+                <span key={i} id='text-wrapper' className='overflow-hidden'>
+                    <span className={`intro-word rotate-origin-bottom transform-origin-bottom opacity-0 inline-block mr-2 ${spanStyle}`}>
+                        {word}
+                    </span>
                 </span>
             ))}
         </div>
